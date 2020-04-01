@@ -17,8 +17,30 @@
  */
 import Foundation
 
+func longestWord(word: String) -> String? {
+    if let longestWordWithPunctuation = word.components(separatedBy: " ").max(by: { $1.count > $0.count }) {
+        let longestWord = longestWordWithPunctuation.removingCharacters(inCharacterSet: CharacterSet.punctuationCharacters)
+        print(longestWord)
+    }
+    
+    return nil
+}
+
+longestWord(word: "This string, has a gigantic! supercalafragilisticexpialadoshous's, word in it...")
 
 
-
+extension String {
+    func removingCharacters(inCharacterSet forbiddenCharacters: CharacterSet) -> String {
+        var filteredString = self
+        while true {
+            if let forbiddenCharRange = filteredString.rangeOfCharacter(from: forbiddenCharacters) {
+                filteredString.removeSubrange(forbiddenCharRange)
+            } else {
+                break
+            }
+        }
+        return filteredString
+    }
+}
 
 //: [Palindrome](@next)

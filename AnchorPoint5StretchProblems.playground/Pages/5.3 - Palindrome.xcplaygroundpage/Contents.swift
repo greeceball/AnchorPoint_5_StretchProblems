@@ -19,6 +19,26 @@
 import Foundation
 
 
+func palindrome(stringToConvert: String) -> Bool {
+    var stringToCheck = sanitize(stringToConvert)
+    
+    guard stringToCheck.count >= 2 else {
+         return true
+     }
+
+    var stringReversed = String(stringToCheck.reversed())
+    if stringReversed == stringToCheck {
+        return true
+    }
+    return false
+}
+
+func sanitize(_ value: String) -> String
+{
+    return value.lowercased().replacingOccurrences(of: "[^a-z]+", with: "", options: .regularExpression)
+}
+
+palindrome(stringToConvert: "dammit i'm mad")
 
 
 
